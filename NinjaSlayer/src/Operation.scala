@@ -13,7 +13,7 @@ val OperationMap =
     "イヤーッ！" -> PointerIncrement,
     "グワーッ！" -> PointerDecrement,
     "アイエエエ！" -> ValueIncrement,
-    "ガンバルゾー！ガンバルゾー！" -> ValueDecrement,
+    "ガンバルゾー！" -> ValueDecrement,
     "ワッショイ！" -> ValuePut,
     "サツバツ！" -> ValueGet,
     "ドーモ。" -> LoopStart,
