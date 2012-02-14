@@ -3,6 +3,7 @@ import scala.io.Source
 /**
  * @author aki
  * ニンジャスレイヤー言語解釈・実行機械
+ * コミットテスト。
  */
 object NinjaSlayer {
   def main(args: Array[String]) {
