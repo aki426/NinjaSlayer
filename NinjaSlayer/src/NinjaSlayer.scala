@@ -3,9 +3,11 @@ import scala.io.Source
 /**
  * @author aki
  * ニンジャスレイヤー言語解釈・実行機械
- * コミットテスト。
  */
 object NinjaSlayer {
+  /**
+   * @param args コマンドライン引数。ソースプログラムファイル名を渡す。
+   */
   def main(args: Array[String]) {
     if (args.length > 0) {
       val lines = Source.fromFile(args(0)).getLines().toList
