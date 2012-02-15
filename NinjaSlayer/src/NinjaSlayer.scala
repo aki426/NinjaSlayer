@@ -18,4 +18,9 @@ object NinjaSlayer extends NSParser {
 
     println(li.get.filter(_ != None).map(_.get))
   }
+
+  def runNinja(codes: List[NSCodes], vm: BFVirtualMachine): BFVirtualMachine = codes match {
+    case Nil     => vm
+    case x :: xs => runNinja(xs, vm.apply(x))
+  }
 }
