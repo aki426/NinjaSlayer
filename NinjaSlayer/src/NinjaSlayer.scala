@@ -14,13 +14,15 @@ object NinjaSlayer extends NSParser {
     assert(args(0).endsWith(".ns"))
 
     val codes = Source.fromFile(args(0)).getLines().toList.toString()
-    val li = parseAll(satubatuLang, codes)
+    val li = parseAll(satubatuLang, codes).get.filter(_ != None).map(_.get)
 
-    println(li.get.filter(_ != None).map(_.get))
+    println(li)
+    
+    
   }
 
-  def runNinja(codes: List[NSCodes], vm: BFVirtualMachine): BFVirtualMachine = codes match {
+  /*  def runNinja(codes: List[NSCodes], vm: BFVirtualMachine): BFVirtualMachine = codes match {
     case Nil     => vm
     case x :: xs => runNinja(xs, vm.apply(x))
   }
-}
+*/ }
