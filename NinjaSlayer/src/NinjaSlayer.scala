@@ -4,28 +4,18 @@ import scala.io.Source
  * @author aki
  * ニンジャスレイヤー言語解釈・実行機械
  */
-object NinjaSlayer {
+object NinjaSlayer extends NSParser {
   /**
    * @param args コマンドライン引数。ソースプログラムファイル名を渡す。
    */
-  def main(args: Array[String]) {
-    if (args.length > 0) {
-      val lines = Source.fromFile(args(0)).getLines().toList
-    }
+  def main(args: Array[String]): Unit = {
+
+    assert(args.nonEmpty)
+    assert(args(0).endsWith(".ns"))
+
+    val codes = Source.fromFile(args(0)).getLines().toList.toString()
+    val li = parseAll(satubatuLang, codes)
+
+    println(li.get.filter(_ != None).map(_.get))
   }
-
-  /**
-   * 命令セットを規定
-   */
-  val OperationMap =
-    Map(
-      "イヤーッ！" -> PointerIncrement,
-      "グワーッ！" -> PointerDecrement,
-      "アイエエエ！" -> ValueIncrement,
-      "ガンバルゾー！" -> ValueDecrement,
-      "ワッショイ！" -> ValuePut,
-      "サツバツ！" -> ValueGet,
-      "ドーモ。" -> LoopStart,
-      "サヨナラ！" -> LoopEnd)
-
 }
