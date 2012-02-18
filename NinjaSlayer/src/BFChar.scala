@@ -3,16 +3,16 @@ import scala.Math._
  * brainfuck用charエミュレーションメモリ
  */
 
-class BFChar(i: Integer) {
+class BFChar(i: Int) {
   def this() = {
     this(0)
   }
-  val n: Integer =
+  val n: Int =
     if (i > 127) i % 128
     else if (i < 0) 128 - (abs(i)) % 128
     else i
 
-  def add(i: Integer): BFChar = {
+  def add(i: Int): BFChar = {
     new BFChar(this.n + i)
   }
 

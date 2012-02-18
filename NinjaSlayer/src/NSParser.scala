@@ -12,18 +12,17 @@ class NSParser extends RegexParsers {
       | "ドーモ。" ^^ (_ => Some(NSCodes.LoopStart))
       | "サヨナラ！" ^^ (_ => Some(NSCodes.LoopEnd))
 
-      | """.""".r ^^ (_ => None))
+      | ".".r ^^ (_ => None))
 
   def bfLangParser: Parser[List[Option[NSCodes.Value]]] =
     rep(">" ^^ (_ => Some(NSCodes.AddressIncrement))
       | "<" ^^ (_ => Some(NSCodes.AddressDecrement))
-      | "+" ^^ (_ => Some(NSCodes.ValueIncrement))
+      | '+' ^^ (_ => Some(NSCodes.ValueIncrement))
       | "-" ^^ (_ => Some(NSCodes.ValueDecrement))
-      | "." ^^ (_ => Some(NSCodes.ValueGet))
-      | "," ^^ (_ => Some(NSCodes.ValuePut))
+      | "," ^^ (_ => Some(NSCodes.ValueGet))
+      | '.' ^^ (_ => Some(NSCodes.ValuePut))
       | "[" ^^ (_ => Some(NSCodes.LoopStart))
-      | "]" ^^ (_ => Some(NSCodes.LoopEnd))
-
-      | whiteSpace ^^ (_ => None))
+      | "]" ^^ (_ => Some(NSCodes.LoopEnd)))
+  //     | whiteSpace ^^ (_ => None))
 
 }
