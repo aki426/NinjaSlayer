@@ -11,13 +11,16 @@ object NinjaSlayer extends NSParser {
   def main(args: Array[String]): Unit = {
 
     assert(args.nonEmpty)
-    assert(args(0).endsWith(".ns"))
+
+    assert(args(0).endsWith(".ns") | args(0).endsWith(".njslyr") | args(0).endsWith(".b"))
 
     val codes = Source.fromFile(args(0)).getLines().toList.toString()
-    val li = parseAll(satubatuLang, codes).get.filter(_ != None).map(_.get)
+    val li =
+      if (args(0).endsWith(".b")) parseAll(bfLangParser, codes).get.filter(_ != None).map(_.get)
+      else parseAll(satubatuParser, codes).get.filter(_ != None).map(_.get)
 
-    println(li)
-    
+    println(li.toArray)
+
     
   }
 
